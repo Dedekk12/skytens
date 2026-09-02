@@ -1,18 +1,20 @@
 <?php
 require_once(__DIR__.'/../model/Personagem.php');
 require_once(__DIR__.'/../dao/PersonagemDao.php');
+require_once(__DIR__. '/../service/PersonagemService.php');
 
 class PersonagemController 
 {
     //Atributos
-    private Personagem $obj;
+
     private PersonagemDao $dao;
 
     //Métodos
     public function __construct() {
-       $this->obj=new Personagem();
+
        $this->dao=new PersonagemDAO();
    }
+
 
    //Implementar...
    public function inserir(Personagem $personagem){
