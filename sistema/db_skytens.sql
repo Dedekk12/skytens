@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Tempo de geração: 02/09/2026 às 07:38
+-- Tempo de geração: 02/09/2026 às 09:22
 -- Versão do servidor: 8.0.46-0ubuntu0.24.04.4
 -- Versão do PHP: 8.3.6
 
@@ -55,8 +55,6 @@ CREATE TABLE `personagem` (
   `fisico` float NOT NULL,
   `mental` float NOT NULL,
   `genero` varchar(1) COLLATE utf8mb4_general_ci NOT NULL,
-  `vigor` float NOT NULL,
-  `mana` float NOT NULL,
   `id_conjunto` int NOT NULL,
   `id_poder` int NOT NULL,
   `id_raca` int NOT NULL
@@ -66,8 +64,8 @@ CREATE TABLE `personagem` (
 -- Despejando dados para a tabela `personagem`
 --
 
-INSERT INTO `personagem` (`id_personagem`, `nome`, `fisico`, `mental`, `genero`, `vigor`, `mana`, `id_conjunto`, `id_poder`, `id_raca`) VALUES
-(1, 'Angelo', 9999, 10, 'M', 1500, 0, 1, 2, 3);
+INSERT INTO `personagem` (`id_personagem`, `nome`, `fisico`, `mental`, `genero`, `id_conjunto`, `id_poder`, `id_raca`) VALUES
+(1, 'Angelo', 9999, 10, 'M', 1, 2, 3);
 
 -- --------------------------------------------------------
 
@@ -102,14 +100,14 @@ CREATE TABLE `raca` (
   `id_raca` int NOT NULL,
   `nome_raca` varchar(70) COLLATE utf8mb4_general_ci NOT NULL,
   `habilidade` varchar(120) COLLATE utf8mb4_general_ci NOT NULL,
-  `bonus_incial` varchar(120) COLLATE utf8mb4_general_ci NOT NULL
+  `bonus_inicial` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `raca`
 --
 
-INSERT INTO `raca` (`id_raca`, `nome_raca`, `habilidade`, `bonus_incial`) VALUES
+INSERT INTO `raca` (`id_raca`, `nome_raca`, `habilidade`, `bonus_inicial`) VALUES
 (1, 'Elfos', 'Conexão espiritual. Permite a comunicação com espíritos e acesso a magias.', '+1 Magia espiritual\r\n+5 afinidade com luz;\r\n+3 afinidade com vento;'),
 (2, 'Anã', 'Mestre em geomancia.Previsão e manipulação de rochas.', '+5 de afinidade com  terra;\r\n+3 de afinidade com fogo;\r\n+Maestria com equipamentos de artesão;'),
 (3, 'Plasmoises', 'Liquefação. Mobilidade e liquidade grande.', '+5 Afinidade com agua\r\n+3 Afinidade com sombra\r\n+1 Devorar');
