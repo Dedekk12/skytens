@@ -13,9 +13,9 @@ class RacaDAO
       try{
         $sql = "insert into raca (nome_raca,habilidade,bonus_incial) values(?,?,?)";
         $stmt = $this->conexao->prepare($sql);
-        $stmt->bindValue(1,$obj->getNome_raca());
+        $stmt->bindValue(1,$obj->getNome());
 		$stmt->bindValue(2,$obj->getHabilidade());
-		$stmt->bindValue(3,$obj->getBonus_incial());
+		$stmt->bindValue(3,$obj->getBonusIncial());
 		
         $stmt->execute();
         return true;
@@ -36,9 +36,9 @@ bonus_incial = :bonus_incial
             WHERE id_raca = :id";
 
             $stmt = $this->conexao->prepare($sql);
-            $stmt->bindValue("nome_raca", $objeto->getNome_raca());
+            $stmt->bindValue("nome_raca", $objeto->getNome());
 		$stmt->bindValue("habilidade", $objeto->getHabilidade());
-		$stmt->bindValue("bonus_incial", $objeto->getBonus_incial());
+		$stmt->bindValue("bonus_incial", $objeto->getBonusIncial());
 		
             $stmt->bindValue(":id", $id);
             $stmt->execute();

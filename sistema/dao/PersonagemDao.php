@@ -26,9 +26,9 @@ class PersonagemDAO
             $stmt->bindValue(4, $obj->getGenero());
             $stmt->bindValue(5, $obj->getVigor());
             $stmt->bindValue(6, $obj->getMana());
-            $stmt->bindValue(7, $obj->getConjunto()->getId_conjunto());
-            $stmt->bindValue(8, $obj->getPoder()->getId_poder());
-            $stmt->bindValue(9, $obj->getRaca()->getId_raca());
+            $stmt->bindValue(7, $obj->getConjunto()->getIdConjunto());
+            $stmt->bindValue(8, $obj->getPoder()->getIdPoder());
+            $stmt->bindValue(9, $obj->getRaca()->getIdRaca());
 
             $stmt->execute();
         } catch (PDOException $e) {
@@ -62,9 +62,9 @@ class PersonagemDAO
             $stmt->bindValue("genero", $objeto->getGenero());
             $stmt->bindValue("vigor", $objeto->getVigor());
             $stmt->bindValue("mana", $objeto->getMana());
-            $stmt->bindValue("id_conjunto", $objeto->getConjunto()->getId_conjunto());
-            $stmt->bindValue("id_poder", $objeto->getPoder()->getId_poder());
-            $stmt->bindValue("id_raca", $objeto->getRaca()->getId_raca());
+            $stmt->bindValue("id_conjunto", $objeto->getConjunto()->getIdConjunto());
+            $stmt->bindValue("id_poder", $objeto->getPoder()->getIdPoder());
+            $stmt->bindValue("id_raca", $objeto->getRaca()->getIdRaca());
             $stmt->bindValue(":id", $id);
             
             $stmt->execute();
@@ -75,14 +75,21 @@ class PersonagemDAO
 
 
     //Revisão necessária
-    public function excluir(int $id): bool
-    {
-        $sql = "DELETE FROM personagem WHERE id_personagem = :id";
-        $stmt = $this->conexao->prepare($sql);
-        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-        $stmt->execute();
-        header("Location: ../view/lista_personagem.php");
-        exit();
+    public function excluir(int $id)
+    {   
+        try{
+            $sql = "DELETE FROM personagem WHERE id_personagem = :id";
+            $stmt = $this->conexao->prepare($sql);
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            exit();
+        }catch(PDOException $e){
+            $erro = "Erro ao excluir registro.";
+            if(AMB_DEV)
+                print $e->getMessage();
+            return $erro;
+        }
+        
     }
 
     //Revisão necessária
@@ -110,16 +117,17 @@ class PersonagemDAO
         pw.nome_poder,
         r.nome_raca
         FROM `personagem` as p 
-        LEFT JOIN `conjunto` as c 
-            ON p.id_personagem = c.id_conjunto 
-        LEFT JOIN `poder` as pw 
-            ON p.id_personagem = pw.id_poder 
-        LEFT JOIN `raca` as r 
-            ON p.id_personagem = r.id_raca";
+        JOIN `conjunto` as c 
+            ON p.id_conjunto = c.id_conjunto 
+        JOIN `poder` as pw 
+            ON p.id_poder = pw.id_poder 
+        JOIN `raca` as r 
+            ON p.id_raca = r.id_raca";
 
         $stmt = $this->conexao->prepare($sql);
         $stmt->execute();
         $dados = $stmt->fetchAll();
+        //print_r($dados);
         $objetos = $this->map($dados);
         return $objetos;
     }

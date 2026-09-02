@@ -13,9 +13,9 @@ class PoderDAO
       try{
         $sql = "insert into poder (nome_poder,custo,tempo_espera,descricao,duracao) values(?,?,?,?,?)";
         $stmt = $this->conexao->prepare($sql);
-        $stmt->bindValue(1,$obj->getNome_poder());
+        $stmt->bindValue(1,$obj->getNome());
 		$stmt->bindValue(2,$obj->getCusto());
-		$stmt->bindValue(3,$obj->getTempo_espera());
+		$stmt->bindValue(3,$obj->getTempoEspera());
 		$stmt->bindValue(4,$obj->getDescricao());
 		$stmt->bindValue(5,$obj->getDuracao());
 		//$stmt->bindValue(6,$obj->getId_raca());
@@ -41,9 +41,9 @@ duracao = :duracao
             WHERE id_poder = :id";
 
             $stmt = $this->conexao->prepare($sql);
-            $stmt->bindValue("nome_poder", $objeto->getNome_poder());
+            $stmt->bindValue("nome_poder", $objeto->getNome());
 		$stmt->bindValue("custo", $objeto->getCusto());
-		$stmt->bindValue("tempo_espera", $objeto->getTempo_espera());
+		$stmt->bindValue("tempo_espera", $objeto->getTempoEspera());
 		$stmt->bindValue("descricao", $objeto->getDescricao());
 		$stmt->bindValue("duracao", $objeto->getDuracao());;
 		

@@ -13,7 +13,7 @@ class ConjuntoDAO
         try {
             $sql = "insert into conjunto (nome_conjunto,armadura,arma,pocao) values(?,?,?,?)";
             $stmt = $this->conexao->prepare($sql);
-            $stmt->bindValue(1, $obj->getNome_conjunto());
+            $stmt->bindValue(1, $obj->getNome());
             $stmt->bindValue(2, $obj->getArmadura());
             $stmt->bindValue(3, $obj->getArma());
             $stmt->bindValue(4, $obj->getPocao());
@@ -37,7 +37,7 @@ pocao = :pocao
             WHERE id_conjunto = :id";
 
             $stmt = $this->conexao->prepare($sql);
-            $stmt->bindValue("nome_conjunto", $objeto->getNome_conjunto());
+            $stmt->bindValue("nome_conjunto", $objeto->getNome());
             $stmt->bindValue("armadura", $objeto->getArmadura());
             $stmt->bindValue("arma", $objeto->getArma());
             $stmt->bindValue("pocao", $objeto->getPocao());
