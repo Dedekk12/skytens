@@ -76,7 +76,6 @@ class PersonagemDAO
             $stmt = $this->conexao->prepare($sql);
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
-            exit();
         }catch(PDOException $e){
             $erro = "Erro ao excluir registro.";
             if(AMB_DEV)
