@@ -19,6 +19,8 @@ $poderes = $poderControl->listar();
 $racaControl = new RacaController();
 $racas = $racaControl->listar();
 
+
+
 include(__DIR__ . "/../include/header.php");
 //include(__DIR__ . "/../include/menu.php");
 ?>
@@ -26,7 +28,7 @@ include(__DIR__ . "/../include/header.php");
 
 <div class="row">
     <div class="mt-3">
-        <h3><?= ($personagem && ($personagem->getId() > 0)) ? "Alterar" : "Inserir"  
+        <h3><?= ($personagem && ($personagem->getId() > 0)) ? "Alterar" : "Inserir"
             ?> Personagem</h3>
     </div>
     <div class="col-6">
@@ -102,36 +104,43 @@ include(__DIR__ . "/../include/header.php");
 
 
                 <div class="mb-3" class="form-floating">
-                    <label for="selEstrang">Genero</label>
-                    <select name="estrangeiro" id="selEstrang" class="form-select">
+                    <label for="selGenero">Genero</label>
+                    <select name="genero" id="selGenero" class="form-select">
                         <option value="">----Selecione----</option>
                         <option value="M" <?= '' //($aluno != null) && ($aluno->getEstrangeiro() == "S") ? "selected" : '' 
-                                            ?>>Sim</option>
+                                            ?>>Masculino</option>
                         <option value="F" <?= '' //($aluno != null) && ($aluno->getEstrangeiro() == "N") ? "selected" : '' 
-                                            ?>>Não</option>
+                                            ?>>Feminino</option>
                     </select>
                 </div>
 
                 <div class="mb-3" class="form-floating">
                     <label for="selConjunto" label>
                         <select name="Conjunto" id="selConjunto" class="form-select">
-                            <!-- Cursos criados dinamicamente -->
+                            <!-- Conjuntos criados dinamicamente -->
                             <option>---Selecione---</option>
-                            <?php /* foreach ($conjuntos as $c): ?>
-                                <option value="<?= $c->getId() ?>" <?= '' //($aluno != null) && ($aluno->getCurso()->getId() == $c->getId() ? "selected" : '') 
-                                                                    ?>><?= $c ?></option>
-                            <?php endforeach; */ ?>
+                            <?php foreach ($conjuntos as $c): ?>
+                                <option value="<?= $c->getIdConjunto() ?>"
+                                    <?= '' //($aluno != null) && ($aluno->getCurso()->getId() == $c->getId() ? "selected" : '') 
+                                    ?>>
+                                    <?= $c->getNome() ?>
+                                </option>
+                            <?php endforeach;  ?>
                         </select>
                 </div>
 
                 <div class="mb-3" class="form-floating">
                     <label for="selPoder" label>
                         <select name="Poder" id="selPoder" class="form-select">
-                            <!-- Cursos criados dinamicamente -->
+                            <!-- Poderes criados dinamicamente -->
                             <option>---Selecione---</option>
-                            <?php /* foreach ($poderes as $p): ?>
-                            <option value="<?= $c->getId() ?>" <?= ''//($aluno != null) && ($aluno->getCurso()->getId() == $c->getId() ? "selected" : '') ?>><?= $c ?></option>
-                        <?php endforeach; */ ?>
+                            <?php foreach ($poderes as $p): ?>
+                                <option value="<?= $p->getIdPoder() ?>"
+                                    <?= '' //($aluno != null) && ($aluno->getCurso()->getId() == $c->getId() ? "selected" : '') 
+                                    ?>>
+                                    <?= $p->getNome() ?>
+                                </option>
+                            <?php endforeach;  ?>
                         </select>
                 </div>
 
@@ -140,9 +149,13 @@ include(__DIR__ . "/../include/header.php");
                         <select name="Raca" id="selRaca" class="form-select">
                             <!-- Cursos criados dinamicamente -->
                             <option>---Selecione---</option>
-                            <?php /* foreach ($racas as $r): ?>
-                            <option value="<?= $c->getId() ?>" <?= ''//($aluno != null) && ($aluno->getCurso()->getId() == $c->getId() ? "selected" : '') ?>><?= $c ?></option>
-                        <?php endforeach; */ ?>
+                            <?php foreach ($racas as $r): ?>
+                                <option value="<?= $r->getIdRaca() ?>"
+                                    <?= '' //($aluno != null) && ($aluno->getCurso()->getId() == $c->getId() ? "selected" : '') 
+                                    ?>>
+                                    <?= $r->getNome() ?>
+                                </option>
+                            <?php endforeach;  ?>
                         </select>
                 </div>
 
@@ -159,7 +172,7 @@ include(__DIR__ . "/../include/header.php");
             <div class="row">
                 <div class="mb-3 col-2">
                     <button type="submit" class="btn btn-success">Gravar</button>
-            </div>
+                </div>
 
                 <div class="mb-3 col-2">
                     <a href="listar.php" class="btn btn-dark">Voltar</a>
@@ -186,13 +199,6 @@ include(__DIR__ . "/../include/header.php");
 
 </div>
 <!-- fechamento row (MsgErro + form)
-
-
-
-
-
-
-
 
 <?php
 include(__DIR__ . "/../include/footer.php");
