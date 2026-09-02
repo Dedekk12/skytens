@@ -4,10 +4,10 @@
 class Raca
 {
     //Atributos
-    private int $id_raca;
-    private string $nome_raca;
-    private string $habilidade;
-    private string $bonus_inicial;
+    private ?int $id_raca;
+    private ?string $nome_raca;
+    private ?string $habilidade;
+    private ?string $bonus_inicial;
 
 
     //Métodos
@@ -25,7 +25,7 @@ class Raca
     /**
      * Set the value of id_raca
      */
-    public function setIdRaca(int $id_raca): self
+    public function setIdRaca(?int $id_raca): self
     {
         $this->id_raca = $id_raca;
 
@@ -35,7 +35,7 @@ class Raca
     /**
      * Get the value of nome_raca
      */
-    public function getNome(): string
+    public function getNome(): ?string
     {
         return $this->nome_raca;
     }
@@ -43,7 +43,7 @@ class Raca
     /**
      * Set the value of nome_raca
      */
-    public function setNomeRaca(string $nome_raca): self
+    public function setNomeRaca(?string $nome_raca): self
     {
         $this->nome_raca = $nome_raca;
 
@@ -53,7 +53,7 @@ class Raca
     /**
      * Get the value of habilidade
      */
-    public function getHabilidade(): string
+    public function getHabilidade(): ?string
     {
         return $this->habilidade;
     }
@@ -61,7 +61,7 @@ class Raca
     /**
      * Set the value of habilidade
      */
-    public function setHabilidade(string $habilidade): self
+    public function setHabilidade(?string $habilidade): self
     {
         $this->habilidade = $habilidade;
 
@@ -71,7 +71,7 @@ class Raca
     /**
      * Get the value of bonus_incial
      */
-    public function getBonusInicial(): string
+    public function getBonusInicial(): ?string
     {
         return $this->bonus_inicial;
     }
@@ -79,7 +79,7 @@ class Raca
     /**
      * Set the value of bonus_incial
      */
-    public function setBonusInicial(string $bonus_inicial): self
+    public function setBonusInicial(?string $bonus_inicial): self
     {
         $this->bonus_inicial = $bonus_inicial;
 
