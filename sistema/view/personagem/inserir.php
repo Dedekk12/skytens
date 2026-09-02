@@ -14,54 +14,61 @@ require_once(__DIR__ . "/../../controller/RacaController.php");
 //Codigo
 
 $personagem = null;
+$msgErro = "";
 
 //Form values
 if (isset($_POST["nome"])) {
     //1-Captura de dados
-    $nome =  trim($_POST["nome"]) ? trim($_POST["nome"]) : null ;
-    $idade = is_numeric($_POST["idade"]) ? $_POST["idade"] : null;
-    $estrangeiro = trim($_POST["estrangeiro"]) ? trim($_POST["estrangeiro"]) : null;
-    $idCurso = is_numeric($_POST["curso"]) ? $_POST["curso"] : null;
+    $nome =  trim($_POST["nome"]) ? trim($_POST["nome"]) : null;
+    $poderValue= is_numeric($_POST['poder']) ? $_POST['poder'] : null;
+    $racaValue= is_numeric($_POST['raca']) ? $_POST['raca'] : null;
+    $conjValue = is_numeric($_POST['conjunto']) ? $_POST['conjunto'] : null;
+    $genero= trim($_POST['genero']) ? trim($_POST['genero']) : null;
+    $fisico= is_float($_POST['fisico']) ? $_POST['fisico'] : null;
+    $mental= is_float($_POST['mental']) ? $_POST['mental'] : null;
 
-    //2-Criar objeto Aluno
 
+
+    print_r($_POST);
+
+    //2-Criar objeto
     $personagem = new Personagem();
-
-    $curso = new Curso();
+    $personagem->setIdPersonagem(0);
+    $personagem->setNome($nome);
+    $personagem->setGenero($genero);
+    $personagem->setFisico($fisico);
+    $personagem->setMental($mental);
     
 
+    $conj = new Conjunto();
+    $conj->setIdConjunto($conjValue);
+    $poder = new Poder();
+    $poder->setIdPoder($poderValue);
+    $raca = new Raca();
+    $raca->setIdRaca($racaValue);
+
+    $personagem->setConjunto($conj);
+    $personagem->setPoder($poder);
+    $personagem->setRaca($raca);
+
+    $personagemControl = new PersonagemController;
+
+    
 
     //3-Validação de dados
-
     //4- Persistir o Objeto
-    $personagemControl = new PersonagemController;
 
     $erros =  $personagemControl->inserir($personagem);
 
+
     if (!empty($erros)) {
         $msgErro = implode("<br>", $erros);
-    }else{
+    } else {
         header("location: listar.php");
     }
-   
-
-   /* if (is_array($resultado)) {
-        $erros = $resultado;
-
-        echo "<h1> Lista de erros : </h1> \n <ol>";
-        foreach ($erros as $erro) {
-            echo "\n <li> {$erro} </li>";
-        }
-        echo "</ol>";
-
-    }elseif (is_bool($resultado) && $resultado == true) {
-            echo "<h1> Aluno inserido com sucesso </h1>";
-    }
-    */
 
 }
 
 
 
 include_once(__DIR__ . "/form.php");
-?>
