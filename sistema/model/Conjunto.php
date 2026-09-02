@@ -3,11 +3,11 @@
 final class Conjunto
 {
     //Atributos
-    private int $id_conjunto;
-    private string $nome_conjunto;
-    private string $armadura;
-    private string $arma;
-    private string $pocao;
+    private ?int $id_conjunto;
+    private ?string $nome_conjunto;
+    private ?string $armadura;
+    private ?string $arma;
+    private ?string $pocao;
 
 
     //Métodos
@@ -25,7 +25,7 @@ final class Conjunto
     /**
      * Set the value of id_conjunto
      */
-    public function setIdConjunto(int $id_conjunto): self
+    public function setIdConjunto(?int $id_conjunto): self
     {
         $this->id_conjunto = $id_conjunto;
 
@@ -35,7 +35,7 @@ final class Conjunto
     /**
      * Get the value of nome_conjunto
      */
-    public function getNome(): string
+    public function getNome(): ?string
     {
         return $this->nome_conjunto;
     }
@@ -43,7 +43,7 @@ final class Conjunto
     /**
      * Set the value of nome_conjunto
      */
-    public function setNomeConjunto(string $nome_conjunto): self
+    public function setNomeConjunto(?string $nome_conjunto): self
     {
         $this->nome_conjunto = $nome_conjunto;
 
@@ -53,7 +53,7 @@ final class Conjunto
     /**
      * Get the value of armadura
      */
-    public function getArmadura(): string
+    public function getArmadura(): ?string
     {
         return $this->armadura;
     }
@@ -61,7 +61,7 @@ final class Conjunto
     /**
      * Set the value of armadura
      */
-    public function setArmadura(string $armadura): self
+    public function setArmadura(?string $armadura): self
     {
         $this->armadura = $armadura;
 
@@ -71,7 +71,7 @@ final class Conjunto
     /**
      * Get the value of arma
      */
-    public function getArma(): string
+    public function getArma(): ?string
     {
         return $this->arma;
     }
@@ -79,7 +79,7 @@ final class Conjunto
     /**
      * Set the value of arma
      */
-    public function setArma(string $arma): self
+    public function setArma(?string $arma): self
     {
         $this->arma = $arma;
 
@@ -89,7 +89,7 @@ final class Conjunto
     /**
      * Get the value of pocao
      */
-    public function getPocao(): string
+    public function getPocao(): ?string
     {
         return $this->pocao;
     }
@@ -97,7 +97,7 @@ final class Conjunto
     /**
      * Set the value of pocao
      */
-    public function setPocao(string $pocao): self
+    public function setPocao(?string $pocao): self
     {
         $this->pocao = $pocao;
 
