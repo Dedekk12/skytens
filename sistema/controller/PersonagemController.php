@@ -15,7 +15,6 @@ class PersonagemController
        $this->dao=new PersonagemDAO();
    }
 
-
    //Implementar...
    public function inserir(Personagem $personagem){
     
@@ -35,7 +34,7 @@ class PersonagemController
    public function alterar(){
     
    }
-   public function deletar($id){
+   public function deletar( int $id){
     $erros = $this->dao->excluir($id);
     return $erros;
    }
