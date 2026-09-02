@@ -31,6 +31,8 @@ include(__DIR__ . "/../include/header.php");
         <th>Mana</th>
         <th>Conjunto</th>
         <th>Poder</th>
+        <th></th>
+        <th></th>
         
     </tr>
 
@@ -45,6 +47,8 @@ include(__DIR__ . "/../include/header.php");
         <td><?= $p->getMana() ?></td>
         <td><?= $p->getConjunto()->getNome() ?></td>
         <td><?= $p->getPoder()->getNome() ?></td>
+        <td><a href="alterar.php?id=<?= $p->getIdPersonagem() ?>">Alterar</a></td>
+        <td><a href="excluir.php?id=<?= $p->getIdPersonagem() ?>" onclick="return confirm('Confirmar a exclusão?')">Excluir</a></td>
     </tr>
     <?php endforeach; ?>
 </table>
