@@ -18,19 +18,19 @@ class PersonagemDAO
     public function inserir(Personagem $obj)
     {
         try {
-            $sql = "insert into personagem (nome,fisico,mental,genero,id_conjunto,id_poder,id_raca) values(?,?,?,?,?,?,?)";
+            $sql = "INSERT INTO personagem (nome,fisico,mental,genero,id_conjunto,id_poder,id_raca) VALUES(?,?,?,?,?,?,?)";
             $stmt = $this->conexao->prepare($sql);
             $stmt->bindValue(1, $obj->getNome());
             $stmt->bindValue(2, $obj->getFisico());
             $stmt->bindValue(3, $obj->getMental());
             $stmt->bindValue(4, $obj->getGenero());
-            $stmt->bindValue(7, $obj->getConjunto()->getIdConjunto());
-            $stmt->bindValue(8, $obj->getPoder()->getIdPoder());
-            $stmt->bindValue(9, $obj->getRaca()->getIdRaca());
+            $stmt->bindValue(5, $obj->getConjunto()->getIdConjunto());
+            $stmt->bindValue(6, $obj->getPoder()->getIdPoder());
+            $stmt->bindValue(7, $obj->getRaca()->getIdRaca());
 
             $stmt->execute();
         } catch (PDOException $e) {
-            echo $e->getMessage();
+            return $e->getMessage();
         }
     }
 

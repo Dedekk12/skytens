@@ -5,8 +5,6 @@ require_once(__DIR__ . "/../../controller/PoderController.php");
 require_once(__DIR__ . "/../../controller/RacaController.php");
 /*
 TODO - CRIAR SISTEMA DE LISTAGEM PARA AS CLASSES PODER,RACA,CONJUNTO PARA UTILIZAR DE SELECT
-$cursoControl = new CursoControl();
-$cursos = $cursoControl->listar();
 */
 
 
@@ -87,7 +85,7 @@ include(__DIR__ . "/../include/header.php");
                 </div>
 
                 <div class="mb-3" class="form-floating">
-                    <label for="selConjunto" label>
+                    <label for="selConjunto">Conjunto de equipamento inicial</label>
                         <select name="conjunto" id="selConjunto" class="form-select">
                             <!-- Conjuntos criados dinamicamente -->
                             <option>---Selecione---</option>
@@ -102,7 +100,7 @@ include(__DIR__ . "/../include/header.php");
                 </div>
 
                 <div class="mb-3" class="form-floating">
-                    <label for="selPoder" label>
+                    <label for="selPoder">Poder</label>
                         <select name="poder" id="selPoder" class="form-select">
                             <!-- Poderes criados dinamicamente -->
                             <option>---Selecione---</option>
@@ -117,7 +115,7 @@ include(__DIR__ . "/../include/header.php");
                 </div>
 
                 <div class="mb-3" class="form-floating">
-                    <label for="selRaca" label>
+                    <label for="selRaca">Raça</label>
                         <select name="raca" id="selRaca" class="form-select">
                             <!-- Cursos criados dinamicamente -->
                             <option>---Selecione---</option>

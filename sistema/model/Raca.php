@@ -17,7 +17,7 @@ class Raca
     /**
      * Get the value of id_raca
      */
-    public function getIdRaca(): int
+    public function getIdRaca(): ?int
     {
         return $this->id_raca;
     }

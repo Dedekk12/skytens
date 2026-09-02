@@ -17,7 +17,7 @@ final class Conjunto
     /**
      * Get the value of id_conjunto
      */
-    public function getIdConjunto(): int
+    public function getIdConjunto(): ?int
     {
         return $this->id_conjunto;
     }

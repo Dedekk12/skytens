@@ -24,12 +24,12 @@ if (isset($_POST["nome"])) {
     $racaValue= is_numeric($_POST['raca']) ? $_POST['raca'] : null;
     $conjValue = is_numeric($_POST['conjunto']) ? $_POST['conjunto'] : null;
     $genero= trim($_POST['genero']) ? trim($_POST['genero']) : null;
-    $fisico= is_float($_POST['fisico']) ? $_POST['fisico'] : null;
-    $mental= is_float($_POST['mental']) ? $_POST['mental'] : null;
+    $fisico= is_numeric($_POST['fisico']) ? $_POST['fisico'] : null;
+    $mental= is_numeric($_POST['mental']) ? $_POST['mental'] : null;
 
 
 
-    print_r($_POST);
+    // print_r($_POST);
 
     //2-Criar objeto
     $personagem = new Personagem();
@@ -51,7 +51,7 @@ if (isset($_POST["nome"])) {
     $personagem->setPoder($poder);
     $personagem->setRaca($raca);
 
-    $personagemControl = new PersonagemController;
+    $personagemControl = new PersonagemController();
 
     
 
@@ -59,7 +59,7 @@ if (isset($_POST["nome"])) {
     //4- Persistir o Objeto
 
     $erros =  $personagemControl->inserir($personagem);
-
+    
 
     if (!empty($erros)) {
         $msgErro = implode("<br>", $erros);

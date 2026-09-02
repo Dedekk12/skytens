@@ -22,28 +22,19 @@ class PersonagemService
             array_push($erros,"Informe seu mental!!");
         }
 
-        if (!$perso->getVigor()) {
-            array_push($erros,"Informe seu vigor!!");
-        }
-
-        if (!$perso->getMana()) {
-            array_push($erros,"Informe seu mana!!");
-        }
-
-
         if (!$perso->getGenero()) {
             array_push($erros,"Informe seu genero!!");
         }
 
-        if (!$perso->getConjunto()) {
+        if (!$perso->getConjunto()->getIdConjunto()) {
             array_push($erros,"Informe seu conjunto!!");
         }
 
-        if (!$perso->getRaca()) {
+        if (!$perso->getRaca()->getIdRaca()) {
             array_push($erros,"Informe seu Raca!!");
         }
 
-        if (!$perso->getPoder()) {
+        if (!$perso->getPoder()->getIdPoder()) {
             array_push($erros,"Informe seu Poder!!");
         }
 
