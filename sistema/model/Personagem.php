@@ -7,14 +7,14 @@ require_once( __DIR__ ."/Conjunto.php");
 class Personagem
 {
     //Atributos
-    private int $id_personagem;
-    private string $nome;
-    private float $fisico;
-    private float $mental;
-    private string $genero;
-    private Conjunto $conjunto;
-    private Poder $poder;
-    private Raca $raca;
+    private ?int $id_personagem;
+    private ?string $nome;
+    private ?float $fisico;
+    private ?float $mental;
+    private ?string $genero;
+    private ?Conjunto $conjunto;
+    private ?Poder $poder;
+    private ?Raca $raca;
 
 
     //Métodos
