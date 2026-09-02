@@ -11,11 +11,11 @@ class RacaDAO
     public function inserir(Raca $obj): bool
     {
       try{
-        $sql = "insert into raca (nome_raca,habilidade,bonus_incial) values(?,?,?)";
+        $sql = "insert into raca (nome_raca,habilidade,bonus_inicial) values(?,?,?)";
         $stmt = $this->conexao->prepare($sql);
-        $stmt->bindValue(1,$obj->getNome());
+        $stmt->bindValue(1,$obj->getNome_raca());
 		$stmt->bindValue(2,$obj->getHabilidade());
-		$stmt->bindValue(3,$obj->getBonusIncial());
+		$stmt->bindValue(3,$obj->getBonus_incial());
 		
         $stmt->execute();
         return true;
@@ -32,13 +32,13 @@ class RacaDAO
             SET 
 nome_raca = :nome_raca,
 habilidade = :habilidade,
-bonus_incial = :bonus_incial
+bonus_incial = :bonus_inicial
             WHERE id_raca = :id";
 
             $stmt = $this->conexao->prepare($sql);
-            $stmt->bindValue("nome_raca", $objeto->getNome());
+            $stmt->bindValue("nome_raca", $objeto->getNome_raca());
 		$stmt->bindValue("habilidade", $objeto->getHabilidade());
-		$stmt->bindValue("bonus_incial", $objeto->getBonusIncial());
+		$stmt->bindValue("bonus_inicial", $objeto->getBonus_incial());
 		
             $stmt->bindValue(":id", $id);
             $stmt->execute();
@@ -54,7 +54,6 @@ bonus_incial = :bonus_incial
         $stmt = $this->conexao->prepare($sql);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
-        header("Location: ../view/lista_raca.php");
         exit();
     }
     public function buscarPorId(int $id): ?Raca
