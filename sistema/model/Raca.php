@@ -7,7 +7,7 @@ class Raca
     private int $id_raca;
     private string $nome_raca;
     private string $habilidade;
-    private string $bonus_incial;
+    private string $bonus_inicial;
 
 
     //Métodos
@@ -71,17 +71,17 @@ class Raca
     /**
      * Get the value of bonus_incial
      */
-    public function getBonusIncial(): string
+    public function getBonusInicial(): string
     {
-        return $this->bonus_incial;
+        return $this->bonus_inicial;
     }
 
     /**
      * Set the value of bonus_incial
      */
-    public function setBonusIncial(string $bonus_incial): self
+    public function setBonusInicial(string $bonus_inicial): self
     {
-        $this->bonus_incial = $bonus_incial;
+        $this->bonus_inicial = $bonus_inicial;
 
         return $this;
     }
