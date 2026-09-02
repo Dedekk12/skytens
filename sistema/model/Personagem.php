@@ -12,8 +12,6 @@ class Personagem
     private float $fisico;
     private float $mental;
     private string $genero;
-    private float $vigor;
-    private float $mana;
     private Conjunto $conjunto;
     private Poder $poder;
     private Raca $raca;
@@ -21,7 +19,15 @@ class Personagem
 
     //Métodos
     
+    public function getMana(){
+        $mana = ($this->mental * 15) + 30;
+        return $mana;
+    }
 
+    public function getVigor(){
+        $vigor = ($this->fisico * 16) + 45;
+        return $vigor;
+    }
 
 
     //Gets & SEts
@@ -116,41 +122,6 @@ class Personagem
         return $this;
     }
 
-    /**
-     * Get the value of vigor
-     */
-    public function getVigor(): float
-    {
-        return $this->vigor;
-    }
-
-    /**
-     * Set the value of vigor
-     */
-    public function setVigor(float $vigor): self
-    {
-        $this->vigor = $vigor;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of mana
-     */
-    public function getMana(): float
-    {
-        return $this->mana;
-    }
-
-    /**
-     * Set the value of mana
-     */
-    public function setMana(float $mana): self
-    {
-        $this->mana = $mana;
-
-        return $this;
-    }
 
     /**
      * Get the value of conjunto
@@ -205,4 +176,6 @@ class Personagem
 
         return $this;
     }
+
+    
 }
