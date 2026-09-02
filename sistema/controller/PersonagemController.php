@@ -15,8 +15,20 @@ class PersonagemController
    }
 
    //Implementar...
-   public function inserir(){
+   public function inserir(Personagem $personagem){
     
+    $erros = PersonagemService::validar($personagem);
+
+    if (empty($erros)) {
+        $erroDao = $this->dao->inserir($personagem);
+        if ($erroDao) {
+            array_push($erros,$erroDao);
+        }
+    }else
+    {
+        return $erros;
+    }
+
    }
    public function alterar(){
     
