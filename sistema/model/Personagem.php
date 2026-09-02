@@ -43,7 +43,7 @@ class Personagem
     /**
      * Set the value of id_personagem
      */
-    public function setIdPersonagem(int $id_personagem): self
+    public function setIdPersonagem(?int $id_personagem): self
     {
         $this->id_personagem = $id_personagem;
 
@@ -61,7 +61,7 @@ class Personagem
     /**
      * Set the value of nome
      */
-    public function setNome(string $nome): self
+    public function setNome(?string $nome): self
     {
         $this->nome = $nome;
 
@@ -79,7 +79,7 @@ class Personagem
     /**
      * Set the value of fisico
      */
-    public function setFisico(float $fisico): self
+    public function setFisico(?float $fisico): self
     {
         $this->fisico = $fisico;
 
@@ -97,7 +97,7 @@ class Personagem
     /**
      * Set the value of mental
      */
-    public function setMental(float $mental): self
+    public function setMental(?float $mental): self
     {
         $this->mental = $mental;
 
@@ -115,7 +115,7 @@ class Personagem
     /**
      * Set the value of genero
      */
-    public function setGenero(string $genero): self
+    public function setGenero(?string $genero): self
     {
         $this->genero = $genero;
 
@@ -134,7 +134,7 @@ class Personagem
     /**
      * Set the value of conjunto
      */
-    public function setConjunto(Conjunto $conjunto): self
+    public function setConjunto(?Conjunto $conjunto): self
     {
         $this->conjunto = $conjunto;
 
@@ -152,7 +152,7 @@ class Personagem
     /**
      * Set the value of poder
      */
-    public function setPoder(Poder $poder): self
+    public function setPoder(?Poder $poder): self
     {
         $this->poder = $poder;
 
@@ -170,7 +170,7 @@ class Personagem
     /**
      * Set the value of raca
      */
-    public function setRaca(Raca $raca): self
+    public function setRaca(?Raca $raca): self
     {
         $this->raca = $raca;
 
