@@ -21,8 +21,9 @@ class PersonagemController
    public function alterar(){
     
    }
-   public function deletar(){
-    
+   public function deletar($id){
+    $erros = $this->dao->excluir($id);
+    return $erros;
    }
    public function listar(){
     $dados = $this->dao->list();
