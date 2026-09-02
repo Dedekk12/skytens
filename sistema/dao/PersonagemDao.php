@@ -1,218 +1,167 @@
 <?php
-require_once( __DIR__ ."/Poder.php");
-require_once( __DIR__ ."/Raca.php");
-require_once( __DIR__ ."/Conjunto.php");
-
-
-class Personagem
+require_once(__DIR__ . "/../model/Personagem.php");
+require_once(__DIR__ . "/../model/Conjunto.php");
+require_once(__DIR__ . "/../model/Poder.php");
+require_once(__DIR__ . "/../model/Raca.php");
+require_once(__DIR__ . "/../util/Connection.php");
+class PersonagemDAO
 {
-    //Atributos
-    private int $id_personagem;
-    private string $nome;
-    private float $fisico;
-    private float $mental;
-    private string $genero;
-    private float $vigor;
-    private float $mana;
-    private Conjunto $conjunto;
-    private Poder $poder;
-    private Raca $raca;
+    private PDO $conexao;
 
 
-    //Métodos
-    
-    private function calculaMana(){
-        $mana = ($this->mental * 15) + 30;
-        return $mana;
-    }
-
-    private function calculaVigor(){
-        $vigor = ($this->vigor * 16) + 45;
-        return $vigor;
-    }
-
-
-    //Gets & SEts
-
-    /**
-     * Get the value of id_personagem
-     */
-    public function getIdPersonagem(): int
+    public function __construct()
     {
-        return $this->id_personagem;
+        $this->conexao = Connection::getConnection();
     }
 
-    /**
-     * Set the value of id_personagem
-     */
-    public function setIdPersonagem(int $id_personagem): self
+
+    public function inserir(Personagem $obj)
     {
-        $this->id_personagem = $id_personagem;
+        try {
+            $sql = "insert into personagem (nome,fisico,mental,genero,id_conjunto,id_poder,id_raca) values(?,?,?,?,?,?,?)";
+            $stmt = $this->conexao->prepare($sql);
+            $stmt->bindValue(1, $obj->getNome());
+            $stmt->bindValue(2, $obj->getFisico());
+            $stmt->bindValue(3, $obj->getMental());
+            $stmt->bindValue(4, $obj->getGenero());
+            $stmt->bindValue(7, $obj->getConjunto()->getIdConjunto());
+            $stmt->bindValue(8, $obj->getPoder()->getIdPoder());
+            $stmt->bindValue(9, $obj->getRaca()->getIdRaca());
 
-        return $this;
+            $stmt->execute();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
     }
 
-    /**
-     * Get the value of nome
-     */
-    public function getNome(): string
+
+    //Revisão necessária
+    public function alterar(Personagem $objeto, int $id)
     {
-        return $this->nome;
+        try {
+            $sql = "UPDATE personagem
+            SET 
+            nome = :nome,
+            fisico = :fisico,
+            mental = :mental,
+            genero = :genero,
+            id_conjunto = :id_conjunto,
+            id_poder = :id_poder,
+            id_raca = :id_raca
+            WHERE id_personagem = :id";
+
+            $stmt = $this->conexao->prepare($sql);
+
+            $stmt->bindValue("nome", $objeto->getNome());
+            $stmt->bindValue("fisico", $objeto->getFisico());
+            $stmt->bindValue("mental", $objeto->getMental());
+            $stmt->bindValue("genero", $objeto->getGenero());
+            $stmt->bindValue("id_conjunto", $objeto->getConjunto()->getIdConjunto());
+            $stmt->bindValue("id_poder", $objeto->getPoder()->getIdPoder());
+            $stmt->bindValue("id_raca", $objeto->getRaca()->getIdRaca());
+            $stmt->bindValue(":id", $id);
+            
+            $stmt->execute();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
     }
 
-    /**
-     * Set the value of nome
-     */
-    public function setNome(string $nome): self
+
+    //Revisão necessária
+    public function excluir(int $id)
+    {   
+        try{
+            $sql = "DELETE FROM personagem WHERE id_personagem = :id";
+            $stmt = $this->conexao->prepare($sql);
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            exit();
+        }catch(PDOException $e){
+            $erro = "Erro ao excluir registro.";
+            if(AMB_DEV)
+                print $e->getMessage();
+            return $erro;
+        }
+        
+    }
+
+    //Revisão necessária
+    public function buscarPorId(int $id): ?Personagem
     {
-        $this->nome = $nome;
-
-        return $this;
+        $sql = "SELECT * FROM personagem WHERE id_personagem = :id";
+        $stmt = $this->conexao->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_CLASS, Personagem::class);
+        return $stmt->fetch();
     }
 
-    /**
-     * Get the value of fisico
-     */
-    public function getFisico(): float
+    //Alterado 
+    public function list()
     {
-        return $this->fisico;
+        $sql = "SELECT p.id_personagem,
+        p.nome,
+        p.fisico,
+        p.mental,
+        p.genero,
+        c.nome_conjunto,
+        pw.nome_poder,
+        r.nome_raca
+        FROM `personagem` as p 
+        JOIN `conjunto` as c 
+            ON p.id_conjunto = c.id_conjunto 
+        JOIN `poder` as pw 
+            ON p.id_poder = pw.id_poder 
+        JOIN `raca` as r 
+            ON p.id_raca = r.id_raca";
+
+        $stmt = $this->conexao->prepare($sql);
+        $stmt->execute();
+        $dados = $stmt->fetchAll();
+        //print_r($dados);
+        $objetos = $this->map($dados);
+        return $objetos;
     }
 
-    /**
-     * Set the value of fisico
-     */
-    public function setFisico(float $fisico): self
+    public function searchById(int $id)
     {
-        $this->fisico = $fisico;
-
-        return $this;
+        $sql = "SELECT * FROM `personagem` WHERE `personagem`.id_personagem = :id";
+        $stm = $this->conexao->prepare($sql);
+        $stm->bindValue(":id", $id);
+        $stm->execute();
+        $stm->setFetchMode(PDO::FETCH_CLASS, Personagem::class);
+        
+        return $stm->fetch();
     }
 
-    /**
-     * Get the value of mental
-     */
-    public function getMental(): float
+    private function map(array $dados) : array
     {
-        return $this->mental;
+        $objetos = [];
+        foreach ($dados as $d) {
+            $obj = new Personagem();
+            $obj->setIdPersonagem($d["id_personagem"]);
+            $obj->setNome($d["nome"]);
+            $obj->setFisico($d["fisico"]);
+            $obj->setMental($d["mental"]);
+            $obj->setGenero($d["genero"]);
+            $conj = new Conjunto();
+            $conj->setNomeConjunto($d["nome_conjunto"]);
+            $obj->setConjunto($conj);
+
+            $raca = new Raca();
+            $raca->setNomeRaca($d["nome_raca"]);
+            $obj->setRaca($raca);
+            
+
+            $poder = new Poder();
+            $poder->setNomePoder($d["nome_poder"]);
+            $obj->setPoder($poder);
+
+            array_push($objetos,$obj);
+        }
+
+        return $objetos;
     }
 
-    /**
-     * Set the value of mental
-     */
-    public function setMental(float $mental): self
-    {
-        $this->mental = $mental;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of genero
-     */
-    public function getGenero(): string
-    {
-        return $this->genero;
-    }
-
-    /**
-     * Set the value of genero
-     */
-    public function setGenero(string $genero): self
-    {
-        $this->genero = $genero;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of vigor
-     */
-    public function getVigor(): float
-    {
-        return $this->vigor;
-    }
-
-    /**
-     * Set the value of vigor
-     */
-    public function setVigor(): self
-    {
-        $this->vigor = $this->calculaVigor();
-
-        return $this;
-    }
-
-    /**
-     * Get the value of mana
-     */
-    public function getMana(): float
-    {
-        return $this->mana;
-    }
-
-    /**
-     * Set the value of mana
-     */
-    public function setMana(): self
-    {
-        $this->mana = $this->calculaMana();
-
-        return $this;
-    }
-
-    /**
-     * Get the value of conjunto
-     */
-    public function getConjunto(): Conjunto
-    {
-        return $this->conjunto;
-    }
-
-    /**
-     * Set the value of conjunto
-     */
-    public function setConjunto(Conjunto $conjunto): self
-    {
-        $this->conjunto = $conjunto;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of poder
-     */
-    public function getPoder(): Poder
-    {
-        return $this->poder;
-    }
-
-    /**
-     * Set the value of poder
-     */
-    public function setPoder(Poder $poder): self
-    {
-        $this->poder = $poder;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of raca
-     */
-    public function getRaca(): Raca
-    {
-        return $this->raca;
-    }
-
-    /**
-     * Set the value of raca
-     */
-    public function setRaca(Raca $raca): self
-    {
-        $this->raca = $raca;
-
-        return $this;
-    }
-
-    
 }
