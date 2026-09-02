@@ -35,7 +35,7 @@ class Personagem
     /**
      * Get the value of id_personagem
      */
-    public function getIdPersonagem(): int
+    public function getIdPersonagem(): ?int
     {
         return $this->id_personagem;
     }
@@ -53,7 +53,7 @@ class Personagem
     /**
      * Get the value of nome
      */
-    public function getNome(): string
+    public function getNome(): ?string
     {
         return $this->nome;
     }
@@ -71,7 +71,7 @@ class Personagem
     /**
      * Get the value of fisico
      */
-    public function getFisico(): float
+    public function getFisico(): ?float
     {
         return $this->fisico;
     }
@@ -89,7 +89,7 @@ class Personagem
     /**
      * Get the value of mental
      */
-    public function getMental(): float
+    public function getMental(): ?float
     {
         return $this->mental;
     }
@@ -107,7 +107,7 @@ class Personagem
     /**
      * Get the value of genero
      */
-    public function getGenero(): string
+    public function getGenero(): ?string
     {
         return $this->genero;
     }
@@ -126,7 +126,7 @@ class Personagem
     /**
      * Get the value of conjunto
      */
-    public function getConjunto(): Conjunto
+    public function getConjunto(): ?Conjunto
     {
         return $this->conjunto;
     }
@@ -144,7 +144,7 @@ class Personagem
     /**
      * Get the value of poder
      */
-    public function getPoder(): Poder
+    public function getPoder(): ?Poder
     {
         return $this->poder;
     }
@@ -162,7 +162,7 @@ class Personagem
     /**
      * Get the value of raca
      */
-    public function getRaca(): Raca
+    public function getRaca(): ?Raca
     {
         return $this->raca;
     }
