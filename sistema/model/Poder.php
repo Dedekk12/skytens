@@ -4,12 +4,12 @@
 class Poder
 {
     //Atributos
-       private int $id_poder;
-        private string $nome_poder;
-        private int $custo;
-        private int $tempo_espera;
-        private string $descricao;
-        private string $duracao;
+       private ?int $id_poder;
+        private ?string $nome_poder;
+        private ?int $custo;
+        private ?int $tempo_espera;
+        private ?string $descricao;
+        private ?string $duracao;
 
     //Métodos
 
@@ -18,7 +18,7 @@ class Poder
        /**
         * Get the value of id_poder
         */
-       public function getIdPoder(): int
+       public function getIdPoder(): ?int
        {
               return $this->id_poder;
        }
@@ -36,7 +36,7 @@ class Poder
         /**
          * Get the value of nome_poder
          */
-        public function getNome(): string
+        public function getNome(): ?string
         {
                 return $this->nome_poder;
         }
@@ -54,7 +54,7 @@ class Poder
         /**
          * Get the value of custo
          */
-        public function getCusto(): int
+        public function getCusto(): ?int
         {
                 return $this->custo;
         }
@@ -72,7 +72,7 @@ class Poder
         /**
          * Get the value of tempo_espera
          */
-        public function getTempoEspera(): int
+        public function getTempoEspera(): ?int
         {
                 return $this->tempo_espera;
         }
@@ -108,7 +108,7 @@ class Poder
         /**
          * Get the value of duracao
          */
-        public function getDuracao(): string
+        public function getDuracao(): ?string
         {
                 return $this->duracao;
         }
