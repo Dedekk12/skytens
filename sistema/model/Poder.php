@@ -26,7 +26,7 @@ class Poder
        /**
         * Set the value of id_poder
         */
-       public function setIdPoder(int $id_poder): self
+       public function setIdPoder(?int $id_poder): self
        {
               $this->id_poder = $id_poder;
 
@@ -44,7 +44,7 @@ class Poder
         /**
          * Set the value of nome_poder
          */
-        public function setNomePoder(string $nome_poder): self
+        public function setNomePoder(?string $nome_poder): self
         {
                 $this->nome_poder = $nome_poder;
 
@@ -62,7 +62,7 @@ class Poder
         /**
          * Set the value of custo
          */
-        public function setCusto(int $custo): self
+        public function setCusto(?int $custo): self
         {
                 $this->custo = $custo;
 
@@ -80,7 +80,7 @@ class Poder
         /**
          * Set the value of tempo_espera
          */
-        public function setTempoEspera(int $tempo_espera): self
+        public function setTempoEspera(?int $tempo_espera): self
         {
                 $this->tempo_espera = $tempo_espera;
 
@@ -90,7 +90,7 @@ class Poder
         /**
          * Get the value of descricao
          */
-        public function getDescricao(): string
+        public function getDescricao(): ?string
         {
                 return $this->descricao;
         }
@@ -98,7 +98,7 @@ class Poder
         /**
          * Set the value of descricao
          */
-        public function setDescricao(string $descricao): self
+        public function setDescricao(?string $descricao): self
         {
                 $this->descricao = $descricao;
 
@@ -116,7 +116,7 @@ class Poder
         /**
          * Set the value of duracao
          */
-        public function setDuracao(string $duracao): self
+        public function setDuracao(?string $duracao): self
         {
                 $this->duracao = $duracao;
 
