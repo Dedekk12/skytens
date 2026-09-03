@@ -30,7 +30,18 @@ class PersonagemController
         }
         return $erros;
     }
-    public function alterar() {}
+    public function alterar($personagem)
+    {
+        $erros = PersonagemService::validar($personagem);
+
+        if (empty($erros)) {
+            $erroDao = $this->dao->alterar($personagem, $personagem->getIdPersonagem());
+            if ($erroDao) {
+                array_push($erros, $erroDao);
+            }
+        }
+        return $erros;
+    }
     public function deletar(int $id)
     {
         $erros = $this->dao->excluir($id);
@@ -44,7 +55,7 @@ class PersonagemController
 
     public function buscarPorId(int $id)
     {
-        $dados = $this->dao->searchById($id);
+        $dados = $this->dao->buscarPorId($id);
         return $dados;
     }
 }

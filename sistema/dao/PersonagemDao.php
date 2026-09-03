@@ -64,6 +64,7 @@ class PersonagemDAO
             $stmt->execute();
         } catch (PDOException $e) {
             echo $e->getMessage();
+            return $e->getMessage();
         }
     }
 
@@ -88,12 +89,32 @@ class PersonagemDAO
     //Revisão necessária
     public function buscarPorId(int $id): ?Personagem
     {
-        $sql = "SELECT * FROM personagem WHERE id_personagem = :id";
+        $sql = "SELECT p.id_personagem,
+        p.nome,
+        p.fisico,
+        p.mental,
+        p.genero,
+        c.id_conjunto,
+        c.nome_conjunto,
+        pw.id_poder,
+        pw.nome_poder,
+        r.id_raca,
+        r.nome_raca
+        FROM `personagem` as p 
+        JOIN `conjunto` as c 
+            ON p.id_conjunto = c.id_conjunto 
+        JOIN `poder` as pw 
+            ON p.id_poder = pw.id_poder 
+        JOIN `raca` as r 
+            ON p.id_raca = r.id_raca
+        WHERE p.id_personagem = :id";
         $stmt = $this->conexao->prepare($sql);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
-        $stmt->setFetchMode(PDO::FETCH_CLASS, Personagem::class);
-        return $stmt->fetch();
+        $dados = $stmt->fetchAll();
+        // print_r($dados);
+        $objeto = $this->map($dados)[0];
+        return $objeto;
     }
 
     //Alterado 
@@ -104,8 +125,11 @@ class PersonagemDAO
         p.fisico,
         p.mental,
         p.genero,
+        c.id_conjunto,
         c.nome_conjunto,
+        pw.id_poder,
         pw.nome_poder,
+        r.id_raca,
         r.nome_raca
         FROM `personagem` as p 
         JOIN `conjunto` as c 
@@ -123,16 +147,16 @@ class PersonagemDAO
         return $objetos;
     }
 
-    public function searchById(int $id)
-    {
-        $sql = "SELECT * FROM `personagem` WHERE `personagem`.id_personagem = :id";
-        $stm = $this->conexao->prepare($sql);
-        $stm->bindValue(":id", $id);
-        $stm->execute();
-        $stm->setFetchMode(PDO::FETCH_CLASS, Personagem::class);
+    // public function searchById(int $id)
+    // {
+    //     $sql = "SELECT * FROM `personagem` WHERE `personagem`.id_personagem = :id";
+    //     $stm = $this->conexao->prepare($sql);
+    //     $stm->bindValue(":id", $id);
+    //     $stm->execute();
+    //     $stm->setFetchMode(PDO::FETCH_CLASS, Personagem::class);
         
-        return $stm->fetch();
-    }
+    //     return $stm->fetch();
+    // }
 
     private function map(array $dados) : array
     {
@@ -145,15 +169,18 @@ class PersonagemDAO
             $obj->setMental($d["mental"]);
             $obj->setGenero($d["genero"]);
             $conj = new Conjunto();
+            $conj->setIdConjunto($d["id_conjunto"]);
             $conj->setNomeConjunto($d["nome_conjunto"]);
             $obj->setConjunto($conj);
 
             $raca = new Raca();
+            $raca->setIdRaca($d["id_raca"]);
             $raca->setNomeRaca($d["nome_raca"]);
             $obj->setRaca($raca);
             
 
             $poder = new Poder();
+            $poder->setIdPoder($d["id_poder"]);
             $poder->setNomePoder($d["nome_poder"]);
             $obj->setPoder($poder);
 
