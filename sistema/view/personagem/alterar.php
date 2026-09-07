@@ -10,6 +10,8 @@ require_once(__DIR__ . "/../../controller/ConjuntoController.php");
 require_once(__DIR__ . "/../../controller/PoderController.php");
 require_once(__DIR__ . "/../../controller/RacaController.php");
 
+include(__DIR__ . "/../include/menu.php");
+
 $msgErro = array();
 $personagem = null;
 

@@ -16,14 +16,13 @@ include(__DIR__ . "/../include/menu.php");
 
 
 <div class="mt-3">
-    <h3>Listagem de Alunos</h3>
+    <h3>Listagem de Personagens</h3>
 </div>
 
 
 <table class="table table-secondary table-striped align-middle">
     <tr>
         <th>ID</th>
-        <th>Imagem</th>
         <th>Nome</th>
         <th>Raça</th>
         <th>Gênero</th>
@@ -40,9 +39,6 @@ include(__DIR__ . "/../include/menu.php");
     <?php foreach ($personagens as $p): ?>
     <tr>
         <td><?= $p->getIdPersonagem() ?></td>
-        <td>
-            <img src="<?= $p->getImagem() ?>" class="img-fluid" style="max-width: 100px; height: auto;" alt="<?= $p->getNome() ?>">
-        </td>
         <td><?= $p->getNome() ?></td>
         <td><?= $p->getRaca()->getNome() ?></td>
         <td><?= $p->getGenero() ?></td>
