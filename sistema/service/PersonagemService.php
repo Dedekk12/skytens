@@ -18,8 +18,16 @@ class PersonagemService
             array_push($erros,"Informe seu físico!!");
         }
 
+        if ($perso->getFisico() < 0) {
+            array_push($erros,"O físico não pode ser um valor negativo!!!");
+        }
+
         if (!$perso->getMental()) {
             array_push($erros,"Informe seu mental!!");
+        }
+
+                if ($perso->getMental() < 0) {
+            array_push($erros,"O mental não pode ser um valor negativo!!!");
         }
 
         if (!$perso->getGenero()) {

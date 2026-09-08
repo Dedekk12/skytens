@@ -26,134 +26,137 @@ include(__DIR__ . "/../include/header.php");
 
 <div class="row">
     <div class="mt-3">
-        <h3>
+        <h3 class="text-light">
             <?= ($personagem && ($personagem->getIdPersonagem() > 0)) ? "Alterar" : "Inserir" ?>
             Personagem</h3>
     </div>
     <div class="col-6">
         <form action="" method="post">
-            <div class=" p-1 mb-2 border border-3 border-secondary rounded">
+            <div class="bg-light-subtle">
+                <div class=" p-1 mb-2 border border-3 border-secondary rounded">
 
-                <div class="">
-                    <label for="nome" class="form-label">Nome</label>
-                    <input
-                        value="<?= ($personagem != null) ? $personagem->getNome() : ''
-                                ?>"
-                        type="text"
-                        name="nome"
-                        id="txtNome"
-                        placeholder="Informe o nome"
-                        class="form-control">
-                </div>
-                <div class="mb-3">
-                    <label for="txtFisico" class="form-label">Físico</label>
-                    <input
-                        value="<?= ($personagem != null) ? $personagem->getFisico() : ''
-                                ?>"
-                        type="number"
-                        name="fisico"
-                        id="txtFisico"
-                        min="0"
-                        step="0.1"
-                        placeholder="Informe seu valor Físico"
-                        class="form-control">
-                </div>
-                <div class="mb-3">
-                    <label for="txtMental" class="form-label">Mental</label>
-                    <input
-                        value="<?= ($personagem != null) ? $personagem->getMental() : ''
-                                ?>"
-                        type="number"
-                        name="mental"
-                        id="txtMental"
-                        min="0"
-                        step="0.1"
-                        placeholder="Informe seu valor Mental"
-                        class="form-control">
-                </div>
+                    <div class="">
+                        <label for="nome" class="form-label">Nome</label>
+                        <input
+                            value="<?= ($personagem != null) ? $personagem->getNome() : ''
+                                    ?>"
+                            type="text"
+                            name="nome"
+                            id="txtNome"
+                            placeholder="Informe o nome"
+                            class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="txtFisico" class="form-label">Físico</label>
+                        <input
+                            value="<?= ($personagem != null) ? $personagem->getFisico() : ''
+                                    ?>"
+                            type="number"
+                            name="fisico"
+                            id="txtFisico"
+                            min="0"
+                            step="0.1"
+                            placeholder="Informe seu valor Físico"
+                            class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="txtMental" class="form-label">Mental</label>
+                        <input
+                            value="<?= ($personagem != null) ? $personagem->getMental() : ''
+                                    ?>"
+                            type="number"
+                            name="mental"
+                            id="txtMental"
+                            min="0"
+                            step="0.1"
+                            placeholder="Informe seu valor Mental"
+                            class="form-control">
+                    </div>
 
-                <div class="mb-3" class="form-floating">
-                    <label for="selGenero">Gênero</label>
-                    <select name="genero" id="selGenero" class="form-select">
-                        <option value="">----Selecione----</option>
-                        <option value="M" <?= ($personagem != null) && ($personagem->getGenero() == "M") ? "selected" : ''
-                                            ?>>Masculino</option>
-                        <option value="F" <?= ($personagem != null) && ($personagem->getGenero() == "F") ? "selected" : ''
-                                            ?>>Feminino</option>
-                    </select>
-                </div>
+                    <div class="mb-3" class="form-floating">
+                        <label for="selGenero">Gênero</label>
+                        <select name="genero" id="selGenero" class="form-select">
+                            <option value="">----Selecione----</option>
+                            <option value="M" <?= ($personagem != null) && ($personagem->getGenero() == "M") ? "selected" : ''
+                                                ?>>Masculino</option>
+                            <option value="F" <?= ($personagem != null) && ($personagem->getGenero() == "F") ? "selected" : ''
+                                                ?>>Feminino</option>
+                        </select>
+                    </div>
 
-                <div class="">
-                    <label for="imagem" class="form-label">Imagem</label>
-                    <input
-                        value="<?= ($personagem != null) ? $personagem->getImagem() : ''
-                                ?>"
-                        type="text"
-                        name="imagem"
-                        id="txtImagem"
-                        placeholder="Informe um link para a imagem do seu personagem..."
-                        class="form-control">
-                </div>
+                    <div class="">
+                        <label for="imagem" class="form-label">Imagem</label>
+                        <input
+                            value="<?= ($personagem != null) ? $personagem->getImagem() : ''
+                                    ?>"
+                            type="text"
+                            name="imagem"
+                            id="txtImagem"
+                            placeholder="Informe um link para a imagem do seu personagem..."
+                            class="form-control">
+                    </div>
 
-                <div class="mb-3" class="form-floating">
-                    <label for="selConjunto">Conjunto de equipamento inicial</label>
-                    <select name="conjunto" id="selConjunto" class="form-select">
-                        <!-- Conjuntos criados dinamicamente -->
-                        <option>---Selecione---</option>
-                        <?php foreach ($conjuntos as $c): ?>
-                            <option value="<?= $c->getIdConjunto() ?>"
-                                <?php
-                                if ($personagem != null && $personagem->getConjunto()->getIdConjunto() == $c->getIdConjunto())
-                                    print "selected";
-                                ?>>
-                                <?= $c->getNome() ?>
-                            </option>
-                        <?php endforeach;  ?>
-                    </select>
-                </div>
+                    <div class="mb-3" class="form-floating">
+                        <label for="selConjunto">Conjunto de equipamento inicial</label>
+                        <select name="conjunto" id="selConjunto" class="form-select">
+                            <!-- Conjuntos criados dinamicamente -->
+                            <option>---Selecione---</option>
+                            <?php foreach ($conjuntos as $c): ?>
+                                <option value="<?= $c->getIdConjunto() ?>"
+                                    <?php
+                                    if ($personagem != null && $personagem->getConjunto()->getIdConjunto() == $c->getIdConjunto())
+                                        print "selected";
+                                    ?>>
+                                    <?= $c->getNome() ?>
+                                </option>
+                            <?php endforeach;  ?>
+                        </select>
+                    </div>
 
-                <div class="mb-3" class="form-floating">
-                    <label for="selPoder">Poder</label>
-                    <select name="poder" id="selPoder" class="form-select">
-                        <!-- Poderes criados dinamicamente -->
-                        <option>---Selecione---</option>
-                        <?php foreach ($poderes as $p): ?>
-                            <option value="<?= $p->getIdPoder() ?>"
-                                <?php
-                                if ($personagem != null && $personagem->getPoder()->getIdPoder() == $p->getIdPoder())
-                                    print "selected"; ?>>
-                                <?= $p->getNome() ?>
-                            </option>
-                        <?php endforeach;  ?>
-                    </select>
-                </div>
+                    <div class="mb-3" class="form-floating">
+                        <label for="selPoder">Poder</label>
+                        <select name="poder" id="selPoder" class="form-select">
+                            <!-- Poderes criados dinamicamente -->
+                            <option>---Selecione---</option>
+                            <?php foreach ($poderes as $p): ?>
+                                <option value="<?= $p->getIdPoder() ?>"
+                                    <?php
+                                    if ($personagem != null && $personagem->getPoder()->getIdPoder() == $p->getIdPoder())
+                                        print "selected"; ?>>
+                                    <?= $p->getNome() ?>
+                                </option>
+                            <?php endforeach;  ?>
+                        </select>
+                    </div>
 
-                <div class="mb-3" class="form-floating">
-                    <label for="selRaca">Raça</label>
-                    <select name="raca" id="selRaca" class="form-select">
-                        <!-- Cursos criados dinamicamente -->
-                        <option>---Selecione---</option>
-                        <?php foreach ($racas as $r): ?>
-                            <option value="<?= $r->getIdRaca() ?>"
-                                <?php
-                                if ($personagem != null && $personagem->getRaca()->getIdRaca() == $r->getIdRaca())
-                                    print "selected";
-                                ?>>
-                                <?= $r->getNome() ?>
-                            </option>
-                        <?php endforeach;  ?>
-                    </select>
-                </div>
+                    <div class="mb-3" class="form-floating">
+                        <label for="selRaca">Raça</label>
+                        <select name="raca" id="selRaca" class="form-select">
+                            <!-- Cursos criados dinamicamente -->
+                            <option>---Selecione---</option>
+                            <?php foreach ($racas as $r): ?>
+                                <option value="<?= $r->getIdRaca() ?>"
+                                    <?php
+                                    if ($personagem != null && $personagem->getRaca()->getIdRaca() == $r->getIdRaca())
+                                        print "selected";
+                                    ?>>
+                                    <?= $r->getNome() ?>
+                                </option>
+                            <?php endforeach;  ?>
+                        </select>
+                    </div>
 
 
-                <div class="mb-3">
-                    <input type="hidden" name="id" value="<?= $personagem ? $personagem->getIdPersonagem() : 0 ?>"></input>
+                    <div class="mb-3">
+                        <input type="hidden" name="id" value="<?= $personagem ? $personagem->getIdPersonagem() : 0 ?>"></input>
+                    </div>
+
+
                 </div>
+                <!--Fechamento de  border -->
 
 
             </div>
-            <!--Fechamento de  border -->
-
 
 
             <!-- botões -->
@@ -167,6 +170,8 @@ include(__DIR__ . "/../include/header.php");
                 </div>
             </div>
             <!-- Fechamento do container de botões -->
+
+
 
         </form>
 
