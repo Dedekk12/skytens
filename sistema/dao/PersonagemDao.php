@@ -142,7 +142,8 @@ class PersonagemDAO
         JOIN `poder` as pw 
             ON p.id_poder = pw.id_poder 
         JOIN `raca` as r 
-            ON p.id_raca = r.id_raca";
+            ON p.id_raca = r.id_raca
+        ORDER BY p.id_personagem ASC";
 
         $stmt = $this->conexao->prepare($sql);
         $stmt->execute();
