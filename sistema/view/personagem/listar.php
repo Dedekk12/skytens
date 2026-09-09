@@ -15,12 +15,6 @@ include(__DIR__ . "/../include/menu.php");
 ?>
 
 
-
-
-<?php if (!empty($personagens)) : ?>
-
-
-
     <div class="mt-3 text-light">
         <h3>Listagem de Personagens</h3>
     </div>
@@ -66,13 +60,6 @@ include(__DIR__ . "/../include/menu.php");
     </div>
 
 
-<?php else : ?>
-
-
-
-
-
-<?php endif; ?>
 <?php
 //Inclui rodapé
 include(__DIR__ . "/../include/footer.php");
